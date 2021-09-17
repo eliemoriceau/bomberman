@@ -1,0 +1,72 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      [ dev ]
+  pull_request:
+    branches:
+      [ dev, master ]
+
+jobs:
+  compilation-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure CMake
+        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+        run: cmake -B ${{github.workspace}}/build
+
+      - name: Build
+        # Build your program with the given configuration
+        run: cmake --build ${{github.workspace}}/build --config Release
+      - uses: actions/upload-artifact@v2.2.3
+        with:
+          name: Indie_Windows
+          path: | 
+            ${{github.workspace}}\build\bin\Release\
+            ${{github.workspace}}\build\bin\resources\
+
+
+  compilation-linux:
+    runs-on: ubuntu-latest
+    container:
+      image: epitechcontent/epitest-docker
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure CMake
+        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=release
+
+      - name: Build
+        # Build your program with the given configuration
+        run: cmake --build ${{github.workspace}}/build --config release
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Indie
+          path: home/runner/work/B-YEP-400-NAN-4-1-indiestudio-marius1.glo/B-YEP-400-NAN-4-1-indiestudio-marius1.glo/build/sources/Bomberman/Indie-Bomberman
+
+#   unit-test:
+#     runs-on: ubuntu-latest
+#     container:
+#       image: epitechcontent/epitest-docker
+
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Run unit-tests
+#         run: make tests_run
+
+#       - name: Coverage
+#         run: make coverage > coverage_outputs.txt
+#       - name: artifact
+#         uses: actions/upload-artifact@v2
+#         if: ${{ always() }}
+#         with:
+#           name: coverage_outputs
+#           path: coverage_outputs.txt

@@ -1,0 +1,17 @@
+target_sources(${PROJECT_NAME}-Bomberman PRIVATE
+        Music.cpp Music.hpp
+        Texture.cpp Texture.hpp
+        Text.cpp Text.hpp
+        Input.cpp Input.hpp
+        Font.cpp Font.hpp
+        Vector2.cpp Vector2.hpp
+        Sound.cpp Sound.hpp
+        Window.cpp Window.hpp
+        Button.cpp Button.hpp
+        Window.cpp Window.hpp
+        Camera.cpp Camera.hpp
+        Vector3.cpp Vector3.hpp
+        Object.cpp Object.hpp
+        BoundingBox.cpp BoundingBox.hpp
+        Model.hpp Model.cpp
+        Color.cpp Color.hpp)

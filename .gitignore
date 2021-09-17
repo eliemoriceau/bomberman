@@ -1,0 +1,13 @@
+CMakeSettings.json
+CMakeDoxyfile.in
+CMakeDoxygenDefaults.cmake
+cmake-build-*/
+.vs/
+.vscode/
+out/
+.idea/
+*.o
+/documentation/Bomberman/Doxyfile.doxygen_bomberman
+/documentation/ECS/Doxyfile.doxygen_ecs
+/documentation/RaylibWrapper/Doxyfile.doxygen_raylibwrapper
+.vscode/
